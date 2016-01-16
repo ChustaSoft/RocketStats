@@ -14,12 +14,12 @@ if (isset ( $_GET ["action"]) ){
 			break;
 		
 		case 2:
-			//Login
+			//Validar usuario del login
 			echo $cargadorVistas->validateUser();
 			break;
 		
 		case 3:
-			//Cerrar sesión
+			//Cerrar sesión activa
 			if(isset($_SESSION ["autenticate"] ))
 				echo $cargadorVistas->logout();
 			else

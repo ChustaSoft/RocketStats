@@ -16,6 +16,7 @@ class CargadorVistas{
 	
 		return $replacePage;
 	}
+	
 	/*
 	 * Carga todo el template en un string 
 	 */
@@ -24,11 +25,17 @@ class CargadorVistas{
 		return $pagina;
 	}
 	
+	/*
+	 * Establece el formulario de validacion de usuario
+	 */
 	public function validateForm(){	
 		$contenido= $this->load_template("views/templates/login_form.html");
 		return $this->main($contenido);
 	}
 	
+	/*
+	 * Valida si el usuario introducido existe y es correcto
+	 */
 	public function validateUser(){
 		$contenido;
 		$menu;
@@ -54,6 +61,11 @@ class CargadorVistas{
 		}
 		else
 			return $this->validateForm();
+	}
+	
+	public function logout(){
+		session_unset();
+		session_destroy();
 	}
 	
 }

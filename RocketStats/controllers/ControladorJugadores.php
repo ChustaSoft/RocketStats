@@ -16,7 +16,10 @@ class ControladorJugadores{
 	public function getJugador($userName){
 		return $this->jugadoresDb->searchUser($userName);
 	}
-	
+	/*
+	 * Recibirá un usuario y contraseña, recuperará mediante el código dicho usuario y comparará si
+	 * el login es correcto
+	 */
 	public function validarJugador($userName, $userPassword){
 		$originalUser = new Jugador();
 		$originalUser->setCodigo($userName);
