@@ -1,0 +1,50 @@
+<?php
+
+class Jugador{
+	
+	private $id;
+	
+	private $codigo;
+	private $nombre;
+	private $contra;
+	
+	public function __construct(){
+		$this->codigo = "";
+		$this->nombre = "";
+		$this->contra = "";
+	}
+
+	public function setId($id){
+		$this->id = $id;
+	}
+	
+	public function getId(){
+		return $this->id;
+	}
+	
+	public function setCodigo($codigo){
+		$this->codigo = $codigo;
+	}
+	
+	public function getCodigo(){
+		return $this->codigo;
+	}
+	
+	public function setNombre($nombre){
+		$this->nombre = $nombre;
+	}
+	
+	public function getNombre(){
+		return $this->nombre;
+	}
+	
+	public function setContra($contra){
+		$this->contra = $contra;
+	}
+	
+	public function getContra(){
+		return $this->contra;
+	}
+}
+
+?>
