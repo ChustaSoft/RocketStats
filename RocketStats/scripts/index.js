@@ -22,7 +22,11 @@ function crearJugador(){
 		async: false,
 		success : function(responseText) {
 			response = responseText;
-			alert(response);			
+			if(response == "OK"){
+				//TODO recuperar el ID en vez del OK hacerlo bien
+				usersList.push(nuevoJugador);
+				refrescarTablaJugadores();
+			}			
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			alert("There has been an error while connecting to the server, try later");
@@ -61,25 +65,34 @@ function refrescarTablaJugadores(){
 	usersList.sort(function(a, b) { 
 		return a.codigo > b.codigo; 
 	});
+	$("#jugadoresTabla").empty();
+	var tmpHeader = $("<tr></tr>");
+	tmpHeader.append($("<th></th>").html("Id Steam"));
+	tmpHeader.append($("<th></th>").html("Nombre real"));
+	$("#jugadoresTabla").append(tmpHeader);
+	
 	$.each(usersList, function(index, iUser) {
-		  var tmpRow = $("<tr></tr>");
-
-		  tmpRow.append($("<td></td>").html(iUser.codigo));
-		  tmpRow.append($("<td></td>").html(iUser.nombre));
+		tmpRow = $("<tr></tr>");
+		
+		tmpRow.append($("<td></td>").html(iUser.codigo));
+		tmpRow.append($("<td></td>").html(iUser.nombre));
 		  
-		  $("#jugadoresTabla").append(tmpRow);
+		$("#jugadoresTabla").append(tmpRow);
 	});
 };
 
 function visibilidadTablaJugadores(aFlag){
 	if(aFlag && $.isEmptyObject(usersList)){
 		$("#jugadoresTablaDiv").css("visibility", "visible");
+		$("#jugadoresTablaButtonCollapse").css("visibility", "visible");
 		cargarJugadores();
 	}
 	else if(aFlag && !$.isEmptyObject(usersList)){
 		$("#jugadoresTablaDiv").css("visibility", "visible");
+		$("#jugadoresTablaButtonCollapse").css("visibility", "visible");
 	}
 	else{
 		$("#jugadoresTablaDiv").css("visibility", "hidden");
+		$("#jugadoresTablaButtonCollapse").css("visibility", "hidden");
 	}
 }
