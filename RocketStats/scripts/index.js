@@ -32,7 +32,7 @@ function crearJugador(){
 };
 
 function cargarJugadores(){
-	var outPutData = new Array();
+	usersList = new Array();
 	$.ajax({
 		url: "control.php",
 		type: "POST",
@@ -40,7 +40,14 @@ function cargarJugadores(){
 		dataType:"json",
 		async: false,
 		success: function (response) {
-			outPutData = response;
+			var tmpUser = null;
+			$.each(response, function(index, iValue){
+				tmpUser = new Jugador();
+				tmpUser.construct(iValue.codigo, iValue.nombre);
+				tmpUser.setId(iValue.id);
+				usersList.push(tmpUser);
+			});
+			refrescarTablaJugadores();
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			alert("There has been an error while connecting to the server, try later");
@@ -48,19 +55,31 @@ function cargarJugadores(){
 			console.log(xhr.status+"\n"+thrownError);
 		}		
 	});
-	
-//	$.each(usersList, function( index, value ){
-//	    alert(value);
-//	});
-	
-//	if (outPutData[0])
-//	{
-//		for (var i = 0; i < outPutData[1].length; i++)
-//		{
-//			var tmpUser = new userObj();
-//			tmpUser.construct(outPutData[1][i].id, outPutData[1][i].roleId, outPutData[1][i].username, outPutData[1][i].password, outPutData[1][i].name, outPutData[1][i].phone, outPutData[1][i].email, outPutData[1][i].address, outPutData[1][i].startDate, outPutData[1][i].endDate);
-//			this.usersList.push(tmpUser);				
-//		}	
-//	}
-//	else showErrors(outPutData[1]);	
 };
+
+function refrescarTablaJugadores(){
+	usersList.sort(function(a, b) { 
+		return a.codigo > b.codigo; 
+	});
+	$.each(usersList, function(index, iUser) {
+		  var tmpRow = $("<tr></tr>");
+
+		  tmpRow.append($("<td></td>").html(iUser.codigo));
+		  tmpRow.append($("<td></td>").html(iUser.nombre));
+		  
+		  $("#jugadoresTabla").append(tmpRow);
+	});
+};
+
+function visibilidadTablaJugadores(aFlag){
+	if(aFlag && $.isEmptyObject(usersList)){
+		$("#jugadoresTablaDiv").css("visibility", "visible");
+		cargarJugadores();
+	}
+	else if(aFlag && !$.isEmptyObject(usersList)){
+		$("#jugadoresTablaDiv").css("visibility", "visible");
+	}
+	else{
+		$("#jugadoresTablaDiv").css("visibility", "hidden");
+	}
+}

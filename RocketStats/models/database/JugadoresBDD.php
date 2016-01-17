@@ -20,7 +20,6 @@ class JugadoresBDD{
 				$user->setId($row['id']);
 				$user->setCodigo($row['codigo']);
 				$user->setNombre($row['nombre']);
-				$user->setContra($row['contra']);
 				
 				array_push($vector, $user);
 			}

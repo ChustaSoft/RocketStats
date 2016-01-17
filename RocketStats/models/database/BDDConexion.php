@@ -4,10 +4,8 @@ class BDDConexion{
 	
 	//Atributos
 	private $connectionString="mysql:host=localhost;dbname=rocketstat";
-	private $user="root"; //usuario de la BBDD con permisos filtrados
-	private $password = <<<'EOD'
-Ma$t3r755
-EOD;
+	private $user="chustasoft";
+	private $password = "chustaK4";
 	private $db;
 	
 	private function connect(){

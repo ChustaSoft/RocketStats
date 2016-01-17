@@ -1,4 +1,5 @@
-<?php
+<?php 
+header('Content-Type: application/json');
 session_start();
 
 require_once 'controllers/ControladorJugadores.php';
@@ -31,7 +32,7 @@ if (isset($params['action'])){
 				foreach($users as $user){
 					$usersArray[] = $user->getMap();
 				}
-			
+				
 				echo json_encode($usersArray);
 			}
 			break;
