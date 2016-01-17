@@ -6,7 +6,7 @@ class CargadorVistas{
 	
 	private $controlador;
 
-	public function main($contenido="&#8364;lit3 PC Gaming Clan - Rocket Leaghe Stats", $menu='<a href="index.php?action=1">Validar</a>'){
+	public function main($contenido="", $menu='<div id="mainMenu"><ul><li><a href="index.php?action=1">Validar</a></li></ul></div>'){
 			
 		$pagina = $this->load_template('views/templates/estructura_principal.html');
 		$comodines = array("%CONTENT%" , "%MENU%");

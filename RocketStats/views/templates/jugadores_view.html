@@ -1,11 +1,9 @@
-<div>
-	<button onclick="visibilidadTablaJugadores(true)">Mostrar jugadores</button>
-	<div id="jugadoresTablaDiv">
+<div>	
+	<button class="rocketButton" onclick="visibilidadTablaJugadores(true)">Mostrar jugadores</button>
+	<div id="jugadoresTablaDiv" class="rocketTable">
 		<table id="jugadoresTabla">
-			<tr>
-				<th>Id Steam</th><th>Nombre real</th>
-			</tr>		
-		</table>
-		<button onclick="visibilidadTablaJugadores(false)">Ocultar jugadores</button>
+			
+		</table>		
 	</div>
+	<button class="rocketButton" id="jugadoresTablaButtonCollapse" onclick="visibilidadTablaJugadores(false)">Ocultar jugadores</button>
 </div>	
