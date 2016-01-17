@@ -1,71 +1,267 @@
 @CHARSET "ISO-8859-1";
 
-body{
-	font-size:16px;
-	background-color: gray;
-}
+/*Global pagina*/
+	body{
+		font-size:20px;
+		color: white;
+		font-weight: bold;
+		background-color: black;
+	}
+	
+	h1 {
+		font-size:18px;
+		font-weight:bold;
+		margin-bottom:8px;
+	}
+	
+	div #content{
+		
+	}
 
-.myform{
-	margin:0 auto;
-	width:400px;
-	padding:14px;
-}
+/*Barra de menu*/
+	#mainMenu {
+	  zoom: 1;
+	  width: auto;
+	  background: #000000;
+	  padding: 8px 0;
+	}
+	#mainMenu:before {
+	  content: '';
+	  display: block;
+	}
+	#mainMenu:after {
+	  content: '';
+	  display: table;
+	  clear: both;
+	}
+	#mainMenu ul {
+	  list-style-type: none;
+	  position: relative;
+	  display: block;
+	  font-size: 12px;
+	  font-family: Verdana, Helvetica, Arial, sans-serif;
+	  margin: 0;
+	  padding: 0;
+	  border-bottom: 1px solid #7ab900;
+	  zoom: 1;
+	}
+	#mainMenu ul:before {
+	  content: '';
+	  display: block;
+	}
+	#mainMenu ul:after {
+	  content: '';
+	  display: table;
+	  clear: both;
+	}
+	#mainMenu li {
+	  display: block;
+	  float: left;
+	  margin: 0;
+	  padding: 0;
+	}
+	#mainMenu li a {
+	  float: left;
+	  color: #A79787;
+	  text-decoration: none;
+	  height: 24px;
+	  padding: 9px 15px 0;
+	  font-weight: normal;
+	}
+	#mainMenu li:hover, #mainMenu .active {
+	  text-decoration: none;
+	  border-bottom: 2px solid #7ab900;
+	}
+	#mainMenu li:hover a {
+	  color: #fff;
+	}
+	#mainMenu .active a {
+	  color: #fff;
+	  font-weight: 700;
+	}
 
-#stylized{
-	border:solid 2px #b7ddf2;
-	background: #ffffff;
-}
+/*Formulario de login*/
+	.loginForm{
+		margin:0 auto;
+		width:400px;
+		padding:14px;
+	}
+	#stylized{
+		border:solid 2px #b7ddf2;
+		background: #ffffff;
+	}
+	#stylized label{
+		display:block;
+		font-weight:bold;
+		text-align:right;
+		width:140px;
+		float:left;
+	}
+	#stylized .small{
+		color:#666666;
+		display:block;
+		font-size:11px;
+		font-weight:normal;
+		text-align:right;
+		width:140px;
+	}
+	#stylized input{
+		float:left;
+		font-size:12px;
+		padding:4px 2px;
+		border:solid 1px #aacfe4;
+		width:200px;
+		margin:2px 0 20px 10px;
+	}
+	#stylized button{
+		clear:both;
+		margin-left:150px;
+		width:125px;
+		height:31px;
+		text-align:center;
+		line-height:31px;
+		color:#FFFFFF;
+		font-size:11px;
+		font-weight:bold;
+	}
 
-#stylized h1 {
-	font-size:14px;
-	font-weight:bold;
-	margin-bottom:8px;
-}
+/*Vista de jugadores y estadisticas*/
+	#jugadoresTablaDiv, #jugadoresTablaButtonCollapse{
+		visibility: hidden;
+	}
 
-#stylized p{
-	font-size:11px;
-	color:#666666;
-	margin-bottom:20px;
-	border-bottom:solid 1px #b7ddf2;
-	padding-bottom:10px;
-}
+	/*Tablas genericas de la app*/
+	.rocketTable {
+		margin:2em;
+		padding:0px;
+		width: 60%;
+		box-shadow: 10px 10px 5px #888888;
+		border:1px solid #000000;
+		
+		-moz-border-radius-bottomleft:0px;
+		-webkit-border-bottom-left-radius:0px;
+		border-bottom-left-radius:0px;
+		
+		-moz-border-radius-bottomright:0px;
+		-webkit-border-bottom-right-radius:0px;
+		border-bottom-right-radius:0px;
+		
+		-moz-border-radius-topright:0px;
+		-webkit-border-top-right-radius:0px;
+		border-top-right-radius:0px;
+		
+		-moz-border-radius-topleft:0px;
+		-webkit-border-top-left-radius:0px;
+		border-top-left-radius:0px;
+	}
+	.rocketTable table{
+	    border-collapse: collapse;
+	        border-spacing: 0;
+		width:100%;
+		height:100%;
+		margin:0px;padding:0px;
+	}
+	.rocketTable tr:last-child td:last-child {
+		-moz-border-radius-bottomright:0px;
+		-webkit-border-bottom-right-radius:0px;
+		border-bottom-right-radius:0px;
+	}
+	.rocketTable table tr:first-child td:first-child {
+		-moz-border-radius-topleft:0px;
+		-webkit-border-top-left-radius:0px;
+		border-top-left-radius:0px;
+	}
+	.rocketTable table tr:first-child td:last-child {
+		-moz-border-radius-topright:0px;
+		-webkit-border-top-right-radius:0px;
+		border-top-right-radius:0px;
+	}.rocketTable tr:last-child td:first-child{
+		-moz-border-radius-bottomleft:0px;
+		-webkit-border-bottom-left-radius:0px;
+		border-bottom-left-radius:0px;
+	}.rocketTable tr:hover td{
+		
+	}
+	.rocketTable tr:nth-child(odd){ background-color:#ffaa56; }
+	.rocketTable tr:nth-child(even)    { background-color:#ffffff; }.rocketTable td{
+		vertical-align:middle;
+		
+		
+		border:1px solid #000000;
+		border-width:0px 1px 1px 0px;
+		text-align:left;
+		padding:7px;
+		font-size:14px;
+		font-family:Arial;
+		font-weight:normal;
+		color:#000000;
+	}
+	.rocketTable tr:last-child td{
+		border-width:0px 1px 0px 0px;
+	}
+	.rocketTable tr td:last-child{
+		border-width:0px 0px 1px 0px;
+	}
+	.rocketTable tr:last-child td:last-child{
+		border-width:0px 0px 0px 0px;
+	}
+	.rocketTable tr:first-child td{
+			background:-o-linear-gradient(bottom, #ff7f00 5%, #bf5f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00) );
+		background:-moz-linear-gradient( center top, #ff7f00 5%, #bf5f00 100% );
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#bf5f00");	background: -o-linear-gradient(top,#ff7f00,bf5f00);
+	
+		background-color:#ff7f00;
+		border:0px solid #000000;
+		text-align:center;
+		border-width:0px 0px 1px 1px;
+		font-size:16px;
+		font-family:Arial;
+		font-weight:bold;
+		color:#ffffff;
+	}
+	.rocketTable tr:first-child:hover td{
+		background:-o-linear-gradient(bottom, #ff7f00 5%, #bf5f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00) );
+		background:-moz-linear-gradient( center top, #ff7f00 5%, #bf5f00 100% );
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#bf5f00");	background: -o-linear-gradient(top,#ff7f00,bf5f00);
+	
+		background-color:#ff7f00;
+	}
+	.rocketTable tr:first-child td:first-child{
+		border-width:0px 0px 1px 0px;
+	}
+	.rocketTable tr:first-child td:last-child{
+		border-width:0px 0px 1px 1px;
+	}
+	
+	/*Botones genericos de la app*/
+	.rocketButton {
+	  background: #fabb5c;
+	  background-image: -webkit-linear-gradient(top, #fabb5c, #8a4a28);
+	  background-image: -moz-linear-gradient(top, #fabb5c, #8a4a28);
+	  background-image: -ms-linear-gradient(top, #fabb5c, #8a4a28);
+	  background-image: -o-linear-gradient(top, #fabb5c, #8a4a28);
+	  background-image: linear-gradient(to bottom, #fabb5c, #8a4a28);
+	  -webkit-border-radius: 28;
+	  -moz-border-radius: 28;
+	  border-radius: 28px;
+	  -webkit-box-shadow: 3px 4px 10px #ababab;
+	  -moz-box-shadow: 3px 4px 10px #ababab;
+	  box-shadow: 3px 4px 10px #ababab;
+	  font-family: Arial;
+	  color: #ffffff;
+	  font-size: 20px;
+	  padding: 10px 20px 10px 20px;
+	  text-decoration: none;
+	}
+	
+	.rocketButton:hover {
+	  background: #c8deeb;
+	  background-image: -webkit-linear-gradient(top, #c8deeb, #1e77b3);
+	  background-image: -moz-linear-gradient(top, #c8deeb, #1e77b3);
+	  background-image: -ms-linear-gradient(top, #c8deeb, #1e77b3);
+	  background-image: -o-linear-gradient(top, #c8deeb, #1e77b3);
+	  background-image: linear-gradient(to bottom, #c8deeb, #1e77b3);
+	  text-decoration: none;
+	}
 
-#stylized label{
-	display:block;
-	font-weight:bold;
-	text-align:right;
-	width:140px;
-	float:left;
-}
-
-#stylized .small{
-	color:#666666;
-	display:block;
-	font-size:11px;
-	font-weight:normal;
-	text-align:right;
-	width:140px;
-}
-
-#stylized input{
-	float:left;
-	font-size:12px;
-	padding:4px 2px;
-	border:solid 1px #aacfe4;
-	width:200px;
-	margin:2px 0 20px 10px;
-}
-
-#stylized button{
-	clear:both;
-	margin-left:150px;
-	width:125px;
-	height:31px;
-	background:#666666 url(img/button.png) no-repeat;
-	text-align:center;
-	line-height:31px;
-	color:#FFFFFF;
-	font-size:11px;
-	font-weight:bold;
-}
 
