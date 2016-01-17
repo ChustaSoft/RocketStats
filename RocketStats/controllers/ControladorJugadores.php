@@ -13,9 +13,13 @@ class ControladorJugadores{
 		$this->jugadoresService = new JugadoresService();
 	}
 	
+	/*
+	 * Obtiene un jugador por su userName (id de steam)
+	 */
 	public function getJugador($userName){
 		return $this->jugadoresDb->searchUser($userName);
 	}
+	
 	/*
 	 * Recibirá un usuario y contraseña, recuperará mediante el código dicho usuario y comparará si
 	 * el login es correcto
@@ -24,16 +28,27 @@ class ControladorJugadores{
 		$originalUser = new Jugador();
 		$originalUser->setCodigo($userName);
 		$originalUser->setContra(md5($userPassword));
-		$user = $this->getJugador($userName);
+		$obtainedUser = $this->getJugador($userName);
 		
-		$flag = $this->jugadoresService->validarUsuario($originalUser, $user);
+		$flag = $this->jugadoresService->validarUsuario($originalUser, $obtainedUser);
 		
 		if($flag)
-			return $user;
+			return $obtainedUser;
 		else{
 			$originalUser->setId(-1);
 			return $originalUser;
 		}
+	}
+	
+	public function addJugador($jugadorJsonObject){
+		$jugadorNuevo = new Jugador();
+		$jugadorNuevo->createFromJsonObject($jugadorJsonObject);
+		
+		return $this->jugadoresDb->insertUser($jugadorNuevo);
+	}
+	
+	public function obtenerTodosJugadores(){
+		return $this->jugadoresDb->searchAll();
 	}
 	
 }

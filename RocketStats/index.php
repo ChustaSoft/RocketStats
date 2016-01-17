@@ -25,7 +25,23 @@ if (isset ( $_GET ["action"]) ){
 			else
 				echo $cargadorVistas->main();
 			break;
-						
+			
+		case 4:
+			//Cargar vista de jugadores
+			if(isset($_SESSION ["autenticate"] ))
+				echo $cargadorVistas->setJugadoresView();
+			else
+				echo $cargadorVistas->main();
+			break;
+			
+		case 5:
+			//Cargar vista de estadisticas
+			if(isset($_SESSION ["autenticate"] ))
+				echo $cargadorVistas->setEstadisticasView();
+			else
+				echo $cargadorVistas->main();
+			break;		
+		
 	}
 } 
 else {

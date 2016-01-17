@@ -29,7 +29,7 @@ class CargadorVistas{
 	 * Establece el formulario de validacion de usuario
 	 */
 	public function validateForm(){	
-		$contenido= $this->load_template("views/templates/login_form.html");
+		$contenido = $this->load_template("views/templates/login_form.html");
 		return $this->main($contenido);
 	}
 	
@@ -40,7 +40,7 @@ class CargadorVistas{
 		$contenido;
 		$menu;
 		
-		if(isset($_POST["submit"])){
+		if(isset($_POST["loginSubmit"])){
 			$userName = $_POST["nombre"];
 			$userPassword = $_POST["password"];
 			
@@ -66,8 +66,26 @@ class CargadorVistas{
 	public function logout(){
 		session_unset();
 		session_destroy();
+		
+		return $this->validateForm();
 	}
 	
+	public function setJugadoresView(){
+		$nuevoUsuarioContenido = $this->load_template("views/templates/jugador_nuevo.html");
+		$tablaEstadisticasContenido = $this->load_template("views/templates/jugadores_view.html");
+		$menu = $this->load_template("views/templates/menu_bar.html");
+		
+		return $this->main($nuevoUsuarioContenido . $tablaEstadisticasContenido, $menu);		
+	}
+	
+	public function setEstadisticasView(){
+		$nuevoUsuarioContenido = $this->load_template("views/templates/estadisticas_filtros.html");
+		$tablaEstadisticasContenido = $this->load_template("views/templates/estadisticas_view.html");
+		$menu = $this->load_template("views/templates/menu_bar.html");
+	
+		return $this->main($nuevoUsuarioContenido . $tablaEstadisticasContenido, $menu);
+	}
+		
 }
 
 ?>

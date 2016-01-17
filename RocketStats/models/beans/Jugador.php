@@ -13,6 +13,11 @@ class Jugador{
 		$this->nombre = "";
 		$this->contra = "";
 	}
+	
+	public function createFromJsonObject($jugadorJsonObject){
+		$this->codigo = $jugadorJsonObject->codigo;
+		$this->nombre = $jugadorJsonObject->nombre;
+	}
 
 	public function setId($id){
 		$this->id = $id;
@@ -44,6 +49,16 @@ class Jugador{
 	
 	public function getContra(){
 		return $this->contra;
+	}
+	
+	public function getMap() {
+		$data = array();
+		
+		$data["id"]= $this->getId();
+		$data["codigo"]= $this->getCodigo();
+		$data["nombre"]= $this->getNombre();
+		
+		return $data;
 	}
 }
 
