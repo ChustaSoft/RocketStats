@@ -40,3 +40,8 @@ ALTER TABLE partidos ADD FOREIGN KEY (tipo) REFERENCES tipos_partido(id);
 ALTER TABLE estadisticas_partido_jugador ADD FOREIGN KEY (id_partido) REFERENCES partidos(id);
 ALTER TABLE estadisticas_partido_jugador ADD FOREIGN KEY (id_jugador) REFERENCES jugadores(id);
 ALTER TABLE estadisticas_partido_jugador ADD FOREIGN KEY (id_estadistica) REFERENCES estadisticas(id);
+
+--Auditoria para las estadisticas
+ALTER TABLE estadisticas_partido_jugador ADD COLUMN auditoriaJugador INT(3);
+ALTER TABLE estadisticas_partido_jugador ADD COLUMN auditoriaJugadorFecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE estadisticas_partido_jugador ADD FOREIGN KEY (auditoriaJugador) REFERENCES jugadores(id);
