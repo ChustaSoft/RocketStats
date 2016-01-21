@@ -2,6 +2,25 @@ var usersList = new Array();
 
 $(document).ready(function (){
 	
+//	$("#btnIntroducirPartido").button();
+	
+	$('#divNuevoPartido').dialog({
+		autoOpen:false,
+		modal:true,
+		width:800,
+		height:'auto'
+	});
+	
+	$(".ui-dialog-titlebar").hide();
+	
+	$("#btnIntroducirPartido").click(function(){
+		$("#divNuevoPartido").dialog("open");
+	});
+	
+	$("input:radio[name=rgTipoPartido]").click(function(){
+		var tmpValueClicked = $("input:radio[name=rgTipoPartido]:checked").val();
+		establecerJugadoresPorPartido(tmpValueClicked);
+	});
 
 });
 
@@ -95,4 +114,9 @@ function visibilidadTablaJugadores(aFlag){
 		$("#jugadoresTablaDiv").css("visibility", "hidden");
 		$("#jugadoresTablaButtonCollapse").css("visibility", "hidden");
 	}
-}
+};
+
+function establecerJugadoresPorPartido(tipoSeleccionado){
+	//TODO: Establecer el máximo de jugadores para un partido en #selectJugadoresDelPartido dependiendo del partido seleccinado
+	alert("Check: " + tipoSeleccionado);
+};

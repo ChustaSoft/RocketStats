@@ -79,11 +79,12 @@ class CargadorVistas{
 	}
 	
 	public function setEstadisticasView(){
-		$nuevoUsuarioContenido = $this->load_template("views/templates/estadisticas_filtros.html");
+		$filtrosEstadisticas = $this->load_template("views/templates/estadisticas_filtros.html");
+		$nuevoPartidoContenido = $this->load_template("views/templates/form_nuevo_partido.html");
 		$tablaEstadisticasContenido = $this->load_template("views/templates/estadisticas_view.html");
 		$menu = $this->load_template("views/templates/menu_bar.html");
 	
-		return $this->main($nuevoUsuarioContenido . $tablaEstadisticasContenido, $menu);
+		return $this->main($filtrosEstadisticas . $nuevoPartidoContenido . $tablaEstadisticasContenido, $menu);
 	}
 		
 }

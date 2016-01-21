@@ -1,0 +1,17 @@
+<button id="btnIntroducirPartido" class="rocketButton">Introducir nuevo partido</button>
+
+<div id="divNuevoPartido" title="Nuevo Partido a introducir" style="display:none;">
+	<div id="divTipoPartido">
+		<h3>Selecciona el tipo de partido</h3>
+		<input type="radio" name="rgTipoPartido" value="1">1vs1 
+		<input type="radio" name="rgTipoPartido" value="2">2vs2 
+		<input type="radio" name="rgTipoPartido" value="3" checked>3vs3
+		<input type="radio" name="rgTipoPartido" value="4">4vs4
+	</div>
+	<div id="divJugadoresDelPartido">
+		<h3>Introduce n&uacute;mero de jugadores</h3>
+		<select id="selectJugadoresDelPartido"></select>
+		<table id="tableJugadoresDelPartido"></table>
+	</div>
+	<button id="btnSendPartido" class="rocketButton">Clasificar</button>
+</div>
