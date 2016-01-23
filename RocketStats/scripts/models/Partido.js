@@ -22,15 +22,14 @@ function Partido(){
 	
 	this.getTipo = function(){
 		return this.tipo;
-	}
+	};
 	
 	this.setTipo = function(tipo){
 		this.tipo = tipo;
 	};
 	
-	this.addEstadisticaJugador(aEstadisticaJugador){
+	this.addEstadisticaJugador = function(aEstadisticaJugador){
 		this.estadisticasJugadores.push(aEstadisticaJugador);
 	};
-
 
 };

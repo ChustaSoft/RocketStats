@@ -3,7 +3,7 @@
  */
 function EstadisticaJugador(){
 	
-	this.id;
+	this.idJugador;
 	this.victoria;
 	this.mvp;
 	this.puntaje;
@@ -12,7 +12,8 @@ function EstadisticaJugador(){
 	this.salvadas;
 	this.tiros;
 
-	this.construct = function(aVictoria, aMvp, aPuntaje, aGoles, anAsistencias, aSalvadas, aTiros){
+	this.construct = function(anId, aVictoria, aMvp, aPuntaje, aGoles, anAsistencias, aSalvadas, aTiros){
+		this.idJugador = anId;
 		this.victoria = aVictoria;
 		this.mvp = aMvp;
 		this.puntaje = aPuntaje;
@@ -22,12 +23,12 @@ function EstadisticaJugador(){
 		this.tiros = aTiros;
 	};
 	
-	this.getId = function(){
-		return this.id;
+	this.getIdJugador = function(){
+		return this.idJugador;
 	};
 	
-	this.setId = function(id){
-		this.id = id;
+	this.setIdJugador = function(idJugador){
+		this.idJugador = idJugador;
 	};
 	
 	this.setPuntaje = function(puntaje){
