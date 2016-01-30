@@ -63,7 +63,7 @@ function EstadisticaJugador(){
 		return this.salvadas;
 	};
 	
-	this.setTiros = function(id){
+	this.setTiros = function(tiros){
 		this.tiros = tiros;
 	};
 	
