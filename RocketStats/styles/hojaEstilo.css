@@ -392,3 +392,19 @@
 		-o-border-radius: .8em;	
 	}
 	
+	#tableJugadoresDelPartido{
+		font-size: 14px;
+	}
+	
+	#tableJugadoresDelPartido input{
+		width: 3em;
+	}
+	
+	#tableJugadoresDelPartido select, input[name="puntajeJugador"]{
+		width: 5em;
+	}
+	
+	#btnSendPartido{
+		visibility: hidden;
+	}
+	
