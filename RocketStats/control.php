@@ -35,6 +35,16 @@ if (isset($params['action'])){
 				echo json_encode($usersArray);
 			}
 			break;
+			
+		case 8:
+			//Test de la vista:
+			if(isset($_SESSION ["autenticate"] )){
+				$controlador = new ControladorEstadisticas();
+			
+				$jsonRetreivedObject = json_decode(stripslashes($params['JSONData']));
+				$controlador->addPartido($jsonRetreivedObject);
+			}
+			break;
 
 		default:
 			echo "Action not correct";

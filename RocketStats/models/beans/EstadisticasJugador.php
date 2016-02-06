@@ -1,18 +1,28 @@
 <?php
-require_once "modela/beans/Partido";
-require_once "modela/beans/Jugador";
 
 class EstadisticasJugador{
 	
 	private $id;
 	
-	private $jugador;
+	private $jugadorId;
+	private $victoria;
 	private $mvp;
 	private $puntaje;
 	private $goles;
 	private $asistencias;
 	private $salvadas;
 	private $tiros;
+	
+	public function createFromJsonObject($estadisticaJsonObject){
+		$this->jugadorId = $estadisticaJsonObject->idJugador;
+		$this->victoria = $estadisticaJsonObject->victoria;
+		$this->mvp = $estadisticaJsonObject->mvp;
+		$this->puntaje = $estadisticaJsonObject->puntaje;
+		$this->goles = $estadisticaJsonObject->goles;
+		$this->asistencias = $estadisticaJsonObject->asistencias;
+		$this->salvadas = $estadisticaJsonObject->salvadas;
+		$this->tiros= $estadisticaJsonObject->tiros;
+	}	
 	
 	public function setId($id){
 		$this->id = $id;
@@ -22,12 +32,20 @@ class EstadisticasJugador{
 		return $this->id;
 	}
 	
-	public function setJugador($jugador){
-		$this->jugador = $jugador;
+	public function setJugador($jugadorId){
+		$this->jugadorId = $jugadorId;
+	}
+	
+	public function setVictoria($victoria){
+		$this->victoria = $victoria;
+	}
+	
+	public function getVictoria(){
+		return $this->victoria;
 	}
 	
 	public function getJugador(){
-		return $this->jugador;
+		return $this->jugadorId;
 	}
 	
 	public function setMvp($mvp){

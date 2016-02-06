@@ -45,8 +45,24 @@ class BDDConexion{
 		}else{
 			$sentencia=null;
 		}
-		return $sentencia;
-		
+		return $sentencia;		
+	}
+	
+	public function executeMultipleQueries($sql, $vectorArray){
+		if($this->connect()){
+			$cuenta = 0;
+			
+			for($i=0; $i < sizeof($vectorArray); $i++){
+				$sentencia = $this->db->prepare($sql);
+				$sentencia->execute($vectorArray[$i]);
+				$cuenta += $sentencia->rowCount();
+			}
+			$this->disconnect();
+		}
+		else{
+			$cuenta=-1;
+		}
+		return $cuenta;		
 	}
 	
 }

@@ -1,13 +1,23 @@
 <?php
+require_once 'models/beans/EstadisticasJugador.php';
 	
 class EstadisticasPartido{
 	
 	private $id;
-	
 	private $tipo;
-	private $victoria;
+		
+	private $listaEstadisticasJugadores = array();
 	
-	private $listaEstadisticasJugadores;
+	public function createFromJsonObject($partidoJsonObject){
+		$this->tipo = $partidoJsonObject->tipo;
+		
+		foreach ($partidoJsonObject->estadisticasJugadores as $estadisticaJugadorJson){
+			$estadisticaJugador = new EstadisticasJugador();
+			$estadisticaJugador->createFromJsonObject($estadisticaJugadorJson);
+			array_push($this->listaEstadisticasJugadores, $estadisticaJugador);
+		}
+		
+	}
 	
 	public function setId($id){
 		$this->id = $id;
@@ -22,17 +32,9 @@ class EstadisticasPartido{
 	}
 	
 	public function getTipo(){
-		return $tipo;
+		return $this->tipo;
 	}
-	
-	public function setVictoria($victoria){
-		$this->victoria = $victoria;
-	}
-	
-	public function getVictoria(){
-		return $victoria;
-	}
-	
+
 	public function setEstadisticas($estadisticas){
 		$this->listaEstadisticasJugadores = $estadisticas;
 	}
