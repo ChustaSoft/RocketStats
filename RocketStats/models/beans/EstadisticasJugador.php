@@ -3,7 +3,8 @@
 class EstadisticasJugador{
 	
 	private $id;
-	
+
+	private $tipoPartido;
 	private $jugadorId;
 	private $victoria;
 	private $mvp;
@@ -30,6 +31,14 @@ class EstadisticasJugador{
 	
 	public function getId(){
 		return $this->id;
+	}
+	
+	public function setTipoPartido($tipoPartido){
+		$this->tipoPartido = $tipoPartido;
+	}
+	
+	public function getTipoPartido(){
+		return $this->tipoPartido;
 	}
 	
 	public function setJugador($jugadorId){

@@ -45,6 +45,12 @@ if (isset($params['action'])){
 				$controlador->addPartido($jsonRetreivedObject);
 			}
 			break;
+			
+		case 9:
+			$controlador = new ControladorEstadisticas();
+			$retrievedArray = $controlador->getEstadisticasJugadorByTipoPartido(4);
+			echo json_encode($retrievedArray);
+			break;
 
 		default:
 			echo "Action not correct";

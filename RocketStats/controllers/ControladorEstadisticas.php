@@ -18,6 +18,10 @@ class ControladorEstadisticas{
 		return $this->estadisticasDb->insertPartido($partido);
 	}
 	
+	public function getEstadisticasJugadorByTipoPartido($tipoPartido){
+		return $this->estadisticasDb->getEstadisticasPorTipoPartido($tipoPartido);
+	}
+	
 }
 
 ?>
