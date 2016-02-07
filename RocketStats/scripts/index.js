@@ -351,6 +351,5 @@ function getUsernameById(anId){
 			tmpUsername = iValue.getCodigo();
 		}
 	});
-	
 	return tmpUsername;
 };
