@@ -37,7 +37,7 @@ if (isset($params['action'])){
 			break;
 			
 		case 8:
-			//Test de la vista:
+			//Añadir partido
 			if(isset($_SESSION ["autenticate"] )){
 				$controlador = new ControladorEstadisticas();
 			
@@ -47,9 +47,12 @@ if (isset($params['action'])){
 			break;
 			
 		case 9:
-			$controlador = new ControladorEstadisticas();
-			$retrievedArray = $controlador->getEstadisticasJugadorByTipoPartido(4);
-			echo json_encode($retrievedArray);
+			//Obteher estadísticas
+			if(isset($_SESSION ["autenticate"] )){
+				$controlador = new ControladorEstadisticas();
+				$retrievedArray = $controlador->getEstadisticasJugadorByTipoPartido(json_decode(stripslashes($params['JSONData'])));
+				echo json_encode($retrievedArray);
+			}
 			break;
 
 		default:
