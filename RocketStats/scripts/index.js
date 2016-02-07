@@ -1,4 +1,5 @@
 var usersList = new Array();
+var estadisticasList = new Array();
 
 $(document).ready(function (){
 	
@@ -197,9 +198,6 @@ function enviarEstadisticasPartido(){
 	for (var iNumJugador = 1; iNumJugador <= tmpNumJugadores; iNumJugador++) {
 		var tmpEstadisticaJugador = new EstadisticaJugador();
 
-		var x = $(".rowJugador");
-		var y = $("td[id=estadisticasJugador" + iNumJugador + "]");
-
 		if($("#estadisticasJugador" + iNumJugador).find($("input.isWinner")).is(':checked'))
 			tmpEstadisticaJugador.setVictoria(true);
 		else
@@ -231,12 +229,128 @@ function enviarEstadisticasPartido(){
 		success : function(responseText) {
 			response = responseText;
 			if(response == "OK"){
-				alert("El partido ha sido clasificado correctamente, si has sido un paquete ya no hay marcha atrás, si has sido tramposo y te has puesto goles, te cazaremos friki")
-			}			
+				alert("El partido ha sido clasificado correctamente, si has sido un paquete ya no hay marcha atrás, si has sido tramposo y te has puesto goles, te cazaremos friki");
+			}
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			alert("Error en el servidor");
 		}
     });
 	
+};
+
+function refrescarTablaEstadisticas(aTipoPartido, aTipoFiltro){
+	cargarEstadisticasPartido(aTipoPartido);
+	cambiarOrdenEstadisticas(aTipoFiltro);
+	mostrarEstadisticasPartido(aTipoPartido);
+}
+
+function cargarEstadisticasPartido(aTipoPartido){
+	estadisticasList = new Array();
+	$.ajax({
+		url: "control.php",
+		type: "POST",
+		data : {
+			action : 9,
+			JSONData : JSON.stringify(aTipoPartido)					
+		},
+		dataType:"json",
+		async: false,
+		success: function (response) {
+			var tmpEstadistica = null;
+			$.each(response, function(index, iValue){
+				tmpEstadistica = new ControlEstadisticasJugadores();
+				tmpEstadistica.idJugador = iValue.idJugador;
+				tmpEstadistica.totalVictorias = iValue.totalVictorias;
+				tmpEstadistica.totalMvps = iValue.totalMvps;
+				tmpEstadistica.totalPuntaje = iValue.totalPuntaje;
+				tmpEstadistica.mediaPuntaje = iValue.mediaPuntaje;
+				tmpEstadistica.totalGoles = iValue.totalGoles;
+				tmpEstadistica.mediaGoles = iValue.mediaGoles;
+				tmpEstadistica.totalAsistencias = iValue.totalAsistencias;
+				tmpEstadistica.mediaAsistencias = iValue.mediaAsistencias;
+				tmpEstadistica.totalSalvadas = iValue.totalSalvadas;
+				tmpEstadistica.mediaSalvadas = iValue.mediaSalvadas;
+				tmpEstadistica.totalTiros = iValue.totalTiros;
+				tmpEstadistica.mediaTiros = iValue.mediaTiros;
+				
+				estadisticasList.push(tmpEstadistica);
+			});
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert("There has been an error while connecting to the server, try later");
+			alert(xhr.status+"\n"+thrownError);
+			console.log(xhr.status+"\n"+thrownError);
+			return false;
+		}		
+	});
+	return true;
+};
+
+function cambiarOrdenEstadisticas(aTipoFiltro){
+	estadisticasList.sort(function(a, b){
+		return parseFloat(b.mediaPuntaje) > parseFloat(a.mediaPuntaje);
+	});
+};
+
+function mostrarEstadisticasPartido(aTipoPartido){
+	$("#divEstadisticasView").empty();
+	
+	var tmpTable = generarEstructuraTablaEstadisticas();
+	$.each(estadisticasList, function(index, iStat){
+		var tmpRow = $("<tr></tr>");
+		tmpRow.append("<td>" + getUsernameById(iStat.idJugador) + "</td>");
+		tmpRow.append("<td>" + iStat.totalVictorias + "</td>");
+		tmpRow.append("<td>" + iStat.totalMvps + "</td>");
+		tmpRow.append("<td>" + iStat.totalPuntaje + "</td>");
+		tmpRow.append("<td>" + iStat.mediaPuntaje + "</td>");
+		tmpRow.append("<td>" + iStat.totalGoles + "</td>");
+		tmpRow.append("<td>" + iStat.mediaGoles + "</td>");
+		tmpRow.append("<td>" + iStat.totalAsistencias + "</td>");
+		tmpRow.append("<td>" + iStat.mediaAsistencias + "</td>");
+		tmpRow.append("<td>" + iStat.totalSalvadas + "</td>");
+		tmpRow.append("<td>" + iStat.mediaSalvadas + "</td>");
+		tmpRow.append("<td>" + iStat.totalTiros + "</td>");
+		tmpRow.append("<td>" + iStat.mediaTiros + "</td>");
+		
+		tmpTable.append(tmpRow);
+	});
+	
+	$("#divEstadisticasView").append(tmpTable);
+};
+
+function generarEstructuraTablaEstadisticas(){
+	var tmpTable = $("<table></table>");
+	
+	var tmpTh = $("<tr></tr>");
+	tmpTh.append("<th>Jugador</th>");
+	tmpTh.append("<th>Victorias</th>");
+	tmpTh.append("<th>MVP's</th>");
+	tmpTh.append("<th>Total puntos</th>");
+	tmpTh.append("<th>Media puntos</th>");
+	tmpTh.append("<th>Total goles</th>");
+	tmpTh.append("<th>Media goles</th>");
+	tmpTh.append("<th>Total asistencias</th>");
+	tmpTh.append("<th>Media asistencias</th>");
+	tmpTh.append("<th>Total salvadas</th>");
+	tmpTh.append("<th>Media salvadas</th>");
+	tmpTh.append("<th>Total tiros</th>");
+	tmpTh.append("<th>Media tiros</th>");
+	
+	tmpTable.append(tmpTh);
+	
+	return tmpTable;
+}
+
+function getUsernameById(anId){
+	if($.isEmptyObject(usersList))
+		cargarJugadores();
+	var tmpUsername = "";
+	$.each(usersList, function(index, iValue){
+		if(iValue.getId() == anId){
+			tmpUsername = iValue.getCodigo();
+		}
+	});
+	
+	return tmpUsername;
 };
