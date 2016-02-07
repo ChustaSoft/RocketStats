@@ -8,7 +8,8 @@ $(document).ready(function (){
 		modal:true,
 		width: 'auto',
 		height:'auto',
-		resizable: true
+		resizable: true,
+		hide: { effect: "fade", duration: 150 }
 	});
 	
 	$(".ui-dialog-titlebar").hide();
@@ -218,32 +219,63 @@ function enviarEstadisticasPartido(){
 		tmpPartido.addEstadisticaJugador(tmpEstadisticaJugador);
 	};
 	
+	var tmpOk = false;
+	if(validarDatosDelPartido(tmpPartido))
+		tmpOk = clasificarPartido(tmpPartido);
+	else
+		alert("Si juegas al Rocket igual que introduces usuarios, estamos acabados, ¡hay alguno repetido, revísalo!")
+	
+	if(tmpOk){
+		$("#divNuevoPartido").dialog("close");
+		alert("El partido ha sido clasificado correctamente, si has sido un paquete ya no hay marcha atrás, si has sido tramposo y te has puesto goles, te cazaremos friki");
+	}
+};
+
+function validarDatosDelPartido(aPartido){
+	var tmpFlag = true;
+	$.each(aPartido.getEstadisticasJugador(), function(index, iEstadistica){
+		for(var i = 0; i < aPartido.getEstadisticasJugador().length; i++){
+			if(iEstadistica.getIdJugador() == aPartido.getEstadisticasJugador()[i].getIdJugador() && i != index)
+				tmpFlag = false;
+		}		
+	});
+	return tmpFlag;
+};
+
+function clasificarPartido(aPartido){
+	var tmpFlag = false;
 	$.ajax({
 		url : 'control.php',
 		type : "POST",
 		data : {
 			action : 8,
-			JSONData : JSON.stringify(tmpPartido)					
+			JSONData : JSON.stringify(aPartido)					
 		},
 		async: false,
 		success : function(responseText) {
 			response = responseText;
 			if(response == "OK"){
-				alert("El partido ha sido clasificado correctamente, si has sido un paquete ya no hay marcha atrás, si has sido tramposo y te has puesto goles, te cazaremos friki");
+				tmpFlag = true;
+				
 			}
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			alert("Error en el servidor");
 		}
     });
-	
+	return tmpFlag;
 };
 
-function refrescarTablaEstadisticas(aTipoPartido, aTipoFiltro){
+function iniciarTablaEstadisticasPorPartido(aTipoPartido){
 	cargarEstadisticasPartido(aTipoPartido);
-	cambiarOrdenEstadisticas(aTipoFiltro);
-	mostrarEstadisticasPartido(aTipoPartido);
+	cambiarOrdenEstadisticas(4);
+	mostrarEstadisticasPartido();
 }
+
+function refrescarTablaTablaEstadisticasPorPartido(aTipoFiltro){
+	cambiarOrdenEstadisticas(aTipoFiltro);
+	mostrarEstadisticasPartido();
+};
 
 function cargarEstadisticasPartido(aTipoPartido){
 	estadisticasList = new Array();
@@ -289,11 +321,48 @@ function cargarEstadisticasPartido(aTipoPartido){
 
 function cambiarOrdenEstadisticas(aTipoFiltro){
 	estadisticasList.sort(function(a, b){
-		return parseFloat(b.mediaPuntaje) > parseFloat(a.mediaPuntaje);
+		switch(parseInt(aTipoFiltro)){
+		
+		case 1:
+			return parseFloat(b.totalVictorias) > parseFloat(a.totalVictorias);
+			
+		case 2:
+			return parseFloat(b.totalMvps) > parseFloat(a.totalMvps);
+			
+		case 3:
+			return parseFloat(b.totalPuntaje) > parseFloat(a.totalPuntaje);
+		
+		case 4:
+			return parseFloat(b.mediaPuntaje) > parseFloat(a.mediaPuntaje);
+		
+		case 5:
+			return parseFloat(b.totalGoles) > parseFloat(a.totalGoles);
+			
+		case 6:
+			return parseFloat(b.mediaGoles) > parseFloat(a.mediaGoles);
+			
+		case 7:
+			return parseFloat(b.totalAsistencias) > parseFloat(a.totalAsistencias);
+		
+		case 8:
+			return parseFloat(b.mediaAsistencias) > parseFloat(a.mediaAsistencias);
+			
+		case 9:
+			return parseFloat(b.totalSalvadas) > parseFloat(a.totalSalvadas);
+			
+		case 10:
+			return parseFloat(b.mediaSalvadas) > parseFloat(a.mediaSalvadas);
+			
+		case 11:
+			return parseFloat(b.totalTiros) > parseFloat(a.totalTiros);
+		
+		case 12:
+			return parseFloat(b.mediaTiros) > parseFloat(a.mediaTiros);
+		}
 	});
 };
 
-function mostrarEstadisticasPartido(aTipoPartido){
+function mostrarEstadisticasPartido(){
 	$("#divEstadisticasView").empty();
 	
 	var tmpTable = generarEstructuraTablaEstadisticas();
@@ -324,19 +393,20 @@ function generarEstructuraTablaEstadisticas(){
 	
 	var tmpTh = $("<tr></tr>");
 	tmpTh.append("<th>Jugador</th>");
-	tmpTh.append("<th>Victorias</th>");
-	tmpTh.append("<th>MVP's</th>");
-	tmpTh.append("<th>Total puntos</th>");
-	tmpTh.append("<th>Media puntos</th>");
-	tmpTh.append("<th>Total goles</th>");
-	tmpTh.append("<th>Media goles</th>");
-	tmpTh.append("<th>Total asistencias</th>");
-	tmpTh.append("<th>Media asistencias</th>");
-	tmpTh.append("<th>Total salvadas</th>");
-	tmpTh.append("<th>Media salvadas</th>");
-	tmpTh.append("<th>Total tiros</th>");
-	tmpTh.append("<th>Media tiros</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(1)'>Victorias</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(2)'>MVP's</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(3)'>Total puntos</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(4)'>Media puntos</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(5)'>Total goles</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(6)'>Media goles</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(7)'>Total asistencias</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(8)'>Media asistencias</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(9)'>Total salvadas</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(10)'>Media salvadas</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(11)'>Total tiros</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(12)'>Media tiros</th>");
 	
+	tmpTh.addClass("rocketTableStatsHeader");
 	tmpTable.append(tmpTh);
 	
 	return tmpTable;

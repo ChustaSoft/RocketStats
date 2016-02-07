@@ -31,5 +31,9 @@ function Partido(){
 	this.addEstadisticaJugador = function(aEstadisticaJugador){
 		this.estadisticasJugadores.push(aEstadisticaJugador);
 	};
+	
+	this.getEstadisticasJugador = function(){
+		return this.estadisticasJugadores;
+	};
 
 };

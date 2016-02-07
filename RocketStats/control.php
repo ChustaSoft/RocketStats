@@ -42,7 +42,8 @@ if (isset($params['action'])){
 				$controlador = new ControladorEstadisticas();
 			
 				$jsonRetreivedObject = json_decode(stripslashes($params['JSONData']));
-				$controlador->addPartido($jsonRetreivedObject);
+				$tmpFlag = $controlador->addPartido($jsonRetreivedObject);
+				echo $tmpFlag;
 			}
 			break;
 			
