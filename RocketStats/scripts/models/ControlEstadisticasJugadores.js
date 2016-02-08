@@ -4,6 +4,7 @@
 function ControlEstadisticasJugadores(){
 	
 	this.idJugador;
+	this.totalPartidos;
 	this.totalVictorias;
 	this.totalMvps;
 	this.totalPuntaje;

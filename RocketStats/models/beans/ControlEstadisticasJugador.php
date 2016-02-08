@@ -3,6 +3,7 @@
 class ControlEstadisticasJugador{
 
 	public $idJugador;
+	public $totalPartidos;
 	public $totalVictorias;
 	public $totalMvps;
 	public $totalPuntaje;

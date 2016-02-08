@@ -293,6 +293,7 @@ function cargarEstadisticasPartido(aTipoPartido){
 			$.each(response, function(index, iValue){
 				tmpEstadistica = new ControlEstadisticasJugadores();
 				tmpEstadistica.idJugador = iValue.idJugador;
+				tmpEstadistica.totalPartidos = iValue.totalPartidos;
 				tmpEstadistica.totalVictorias = iValue.totalVictorias;
 				tmpEstadistica.totalMvps = iValue.totalMvps;
 				tmpEstadistica.totalPuntaje = iValue.totalPuntaje;
@@ -358,6 +359,9 @@ function cambiarOrdenEstadisticas(aTipoFiltro){
 		
 		case 12:
 			return parseFloat(b.mediaTiros) > parseFloat(a.mediaTiros);
+			
+		case 13:
+			return parseFloat(b.totalPartidos) > parseFloat(a.totalPartidos);
 		}
 	});
 };
@@ -369,6 +373,7 @@ function mostrarEstadisticasPartido(){
 	$.each(estadisticasList, function(index, iStat){
 		var tmpRow = $("<tr></tr>");
 		tmpRow.append("<td>" + getUsernameById(iStat.idJugador) + "</td>");
+		tmpRow.append("<td>" + iStat.totalPartidos + "</td>");
 		tmpRow.append("<td>" + iStat.totalVictorias + "</td>");
 		tmpRow.append("<td>" + iStat.totalMvps + "</td>");
 		tmpRow.append("<td>" + iStat.totalPuntaje + "</td>");
@@ -393,6 +398,7 @@ function generarEstructuraTablaEstadisticas(){
 	
 	var tmpTh = $("<tr></tr>");
 	tmpTh.append("<th>Jugador</th>");
+	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(13)'>Total jugados</th>");
 	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(1)'>Victorias</th>");
 	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(2)'>MVP's</th>");
 	tmpTh.append("<th onclick='refrescarTablaTablaEstadisticasPorPartido(3)'>Total puntos</th>");
