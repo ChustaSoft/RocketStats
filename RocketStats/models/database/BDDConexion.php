@@ -3,9 +3,9 @@
 class BDDConexion{
 	
 	//Atributos
-	private $connectionString="mysql:host=localhost;dbname=rocketstat";
-	private $user="chustasoft";
-	private $password = "chustaK4";
+	private $connectionString="mysql:host=localhost;dbname=database";
+	private $user="";
+	private $password = "";
 	private $db;
 	
 	private function connect(){
