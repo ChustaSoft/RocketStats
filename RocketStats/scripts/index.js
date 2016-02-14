@@ -325,43 +325,43 @@ function cambiarOrdenEstadisticas(aTipoFiltro){
 		switch(parseInt(aTipoFiltro)){
 		
 		case 1:
-			return parseFloat(b.totalVictorias) > parseFloat(a.totalVictorias);
+			return parseFloat(b.totalVictorias) - parseFloat(a.totalVictorias);
 			
 		case 2:
-			return parseFloat(b.totalMvps) > parseFloat(a.totalMvps);
+			return parseFloat(b.totalMvps) - parseFloat(a.totalMvps);
 			
 		case 3:
-			return parseFloat(b.totalPuntaje) > parseFloat(a.totalPuntaje);
+			return parseFloat(b.totalPuntaje) - parseFloat(a.totalPuntaje);
 		
 		case 4:
-			return parseFloat(b.mediaPuntaje) > parseFloat(a.mediaPuntaje);
+			return parseFloat(b.mediaPuntaje) - parseFloat(a.mediaPuntaje);
 		
 		case 5:
-			return parseFloat(b.totalGoles) > parseFloat(a.totalGoles);
+			return parseFloat(b.totalGoles) - parseFloat(a.totalGoles);
 			
 		case 6:
-			return parseFloat(b.mediaGoles) > parseFloat(a.mediaGoles);
+			return parseFloat(b.mediaGoles)- parseFloat(a.mediaGoles);
 			
 		case 7:
-			return parseFloat(b.totalAsistencias) > parseFloat(a.totalAsistencias);
+			return parseFloat(b.totalAsistencias) - parseFloat(a.totalAsistencias);
 		
 		case 8:
-			return parseFloat(b.mediaAsistencias) > parseFloat(a.mediaAsistencias);
+			return parseFloat(b.mediaAsistencias) - parseFloat(a.mediaAsistencias);
 			
 		case 9:
-			return parseFloat(b.totalSalvadas) > parseFloat(a.totalSalvadas);
+			return parseFloat(b.totalSalvadas) - parseFloat(a.totalSalvadas);
 			
 		case 10:
-			return parseFloat(b.mediaSalvadas) > parseFloat(a.mediaSalvadas);
+			return parseFloat(b.mediaSalvadas) - parseFloat(a.mediaSalvadas);
 			
 		case 11:
-			return parseFloat(b.totalTiros) > parseFloat(a.totalTiros);
+			return parseFloat(b.totalTiros) - parseFloat(a.totalTiros);
 		
 		case 12:
-			return parseFloat(b.mediaTiros) > parseFloat(a.mediaTiros);
+			return parseFloat(b.mediaTiros) - parseFloat(a.mediaTiros);
 			
 		case 13:
-			return parseFloat(b.totalPartidos) > parseFloat(a.totalPartidos);
+			return parseFloat(b.totalPartidos) - parseFloat(a.totalPartidos);
 		}
 	});
 };
