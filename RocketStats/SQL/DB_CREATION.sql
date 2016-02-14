@@ -69,3 +69,8 @@ CREATE TABLE estadisticas_partido(
 )ENGINE=INNODB DEFAULT CHARSET UTF8;
 
 ALTER TABLE estadisticas_partido ADD FOREIGN KEY (id_jugador) REFERENCES jugadores(id);
+
+ALTER TABLE estadisticas_partido ADD COLUMN auditoria_id INT(3);
+ALTER TABLE estadisticas_partido ADD COLUMN auditoria_fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE estadisticas_partido ADD FOREIGN KEY (auditoria_id) REFERENCES jugadores(id);

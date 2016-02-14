@@ -5,7 +5,7 @@ require_once 'models/beans/ControlEstadisticasJugador.php';
 
 class EstadisticasBDD{
 	
-	private $INSERT_INTO_ESTADISTICAS_PARTIDOS = "INSERT INTO estadisticas_partido (tipo_partido, id_jugador, victoria, mvp, puntaje, goles, asistencias, salvadas, tiros) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private $INSERT_INTO_ESTADISTICAS_PARTIDOS = "INSERT INTO estadisticas_partido (tipo_partido, id_jugador, victoria, mvp, puntaje, goles, asistencias, salvadas, tiros, auditoria_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private $GET_STATS_BY_TYPE_MATH = "SELECT id_jugador, count(*) AS total_partidos, sum(victoria) AS total_victorias, sum(mvp) AS total_mvps, 
 			sum(puntaje) AS total_puntaje, avg(puntaje) AS media_puntaje, sum(goles) AS total_goles, avg(goles) AS media_goles, sum(asistencias) AS total_asistencias, avg(asistencias) AS media_asistencias, 
 			sum(salvadas) AS total_salvadas, avg(salvadas) AS media_salvadas, sum(tiros) AS total_tiros, avg(tiros) AS media_tiros from estadisticas_partido ";
@@ -25,7 +25,8 @@ class EstadisticasBDD{
 				$estadisticaPartido->getGoles(),
 				$estadisticaPartido->getAsistencias(),
 				$estadisticaPartido->getSalvadas(),
-				$estadisticaPartido->getTiros()
+				$estadisticaPartido->getTiros(),
+				$_SESSION["sessionUserId"]
 			);
 			
 			array_push($arrayVectorData, $tmpVector);

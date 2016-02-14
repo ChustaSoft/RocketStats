@@ -14,7 +14,7 @@ if (isset($params['action'])){
 	switch ($params['action']){
 		case 6:
 			//Añadir nuevo jugador
-			if(isset($_SESSION ["autenticate"] )){
+			if(isset($_SESSION ["sessionUserName"] )){
 				$controlador = new ControladorJugadores();
 				$jugadorJsonObject = json_decode(stripslashes($params['JSONData']));
 				echo $controlador->addJugador($jugadorJsonObject);
@@ -23,7 +23,7 @@ if (isset($params['action'])){
 			
 		case 7:
 			//Obtener todos los jugadores
-			if(isset($_SESSION ["autenticate"] )){
+			if(isset($_SESSION ["sessionUserName"] )){
 				$controlador = new ControladorJugadores();
 				
 				$users = $controlador->obtenerTodosJugadores();
@@ -38,7 +38,7 @@ if (isset($params['action'])){
 			
 		case 8:
 			//Añadir partido
-			if(isset($_SESSION ["autenticate"] )){
+			if(isset($_SESSION ["sessionUserName"] )){
 				$controlador = new ControladorEstadisticas();
 			
 				$jsonRetreivedObject = json_decode(stripslashes($params['JSONData']));
@@ -49,7 +49,7 @@ if (isset($params['action'])){
 			
 		case 9:
 			//Obteher estadísticas
-			if(isset($_SESSION ["autenticate"] )){
+			if(isset($_SESSION ["sessionUserName"] )){
 				$controlador = new ControladorEstadisticas();
 				$retrievedArray = $controlador->getEstadisticasJugadorByTipoPartido(json_decode(stripslashes($params['JSONData'])));
 				echo json_encode($retrievedArray);

@@ -51,7 +51,8 @@ class CargadorVistas{
 				$user->setContra("");
 				$menu = $this->load_template("views/templates/menu_bar.html");
 				$contenido = "Bienvenido";
-				$_SESSION["autenticate"] = $_POST["nombre"];
+				$_SESSION["sessionUserName"] = $_POST["nombre"];
+				$_SESSION["sessionUserId"] = $user->getId();
 				
 				return $this->main($contenido, $menu);
 			}

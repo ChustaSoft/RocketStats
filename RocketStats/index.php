@@ -20,7 +20,7 @@ if (isset ( $_GET ["action"]) ){
 		
 		case 3:
 			//Cerrar sesión activa
-			if(isset($_SESSION ["autenticate"] ))
+			if(isset($_SESSION ["sessionUserName"] ))
 				echo $cargadorVistas->logout();
 			else
 				echo $cargadorVistas->main();
@@ -28,7 +28,7 @@ if (isset ( $_GET ["action"]) ){
 			
 		case 4:
 			//Cargar vista de jugadores
-			if(isset($_SESSION ["autenticate"] ))
+			if(isset($_SESSION ["sessionUserName"] ))
 				echo $cargadorVistas->setJugadoresView();
 			else
 				echo $cargadorVistas->main();
@@ -36,7 +36,7 @@ if (isset ( $_GET ["action"]) ){
 			
 		case 5:
 			//Cargar vista de estadisticas
-			if(isset($_SESSION ["autenticate"] ))
+			if(isset($_SESSION ["sessionUserName"] ))
 				echo $cargadorVistas->setEstadisticasView();
 			else
 				echo $cargadorVistas->main();
