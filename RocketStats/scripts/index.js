@@ -49,8 +49,8 @@ function crearJugador(){
 			}			
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
-			alert("There has been an error while connecting to the server, try later");
-			console.log(xhr.status+"\n"+thrownError);
+			tempAlert("There has been an error while connecting to the server, try later", 1000);
+			console.log(xhr.status + "\n" + thrownError);
 		}
     });
 };
@@ -73,8 +73,7 @@ function cargarJugadores(){
 			});
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
-			alert("There has been an error while connecting to the server, try later");
-			alert(xhr.status+"\n"+thrownError);
+			tempAlert("There has been an error while connecting to the server, try later", 1000);
 			console.log(xhr.status+"\n"+thrownError);
 			return false;
 		}		
@@ -223,11 +222,11 @@ function enviarEstadisticasPartido(){
 	if(validarDatosDelPartido(tmpPartido))
 		tmpOk = clasificarPartido(tmpPartido);
 	else
-		alert("Si juegas al Rocket igual que introduces usuarios, estamos acabados, ¡hay alguno repetido, revísalo!")
+		tempAlert("Si juegas al Rocket igual que introduces usuarios, estamos acabados, ¡hay alguno repetido, revísalo!", 3000);
 	
 	if(tmpOk){
 		$("#divNuevoPartido").dialog("close");
-		alert("El partido ha sido clasificado correctamente, si has sido un paquete ya no hay marcha atrás, si has sido tramposo y te has puesto goles, te cazaremos friki");
+		tempAlert("El partido ha sido clasificado correctamente, si has sido un paquete ya no hay marcha atrás, si has sido tramposo y te has puesto goles, te cazaremos friki", 5000);
 	}
 };
 
@@ -256,11 +255,10 @@ function clasificarPartido(aPartido){
 			response = responseText;
 			if(response == "OK"){
 				tmpFlag = true;
-				
 			}
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
-			alert("Error en el servidor");
+			tempAlert("There has been an error while connecting to the server, try later", 1000);
 		}
     });
 	return tmpFlag;
@@ -311,8 +309,7 @@ function cargarEstadisticasPartido(aTipoPartido){
 			});
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
-			alert("There has been an error while connecting to the server, try later");
-			alert(xhr.status+"\n"+thrownError);
+			tempAlert("There has been an error while connecting to the server, try later", 1000);
 			console.log(xhr.status+"\n"+thrownError);
 			return false;
 		}		
@@ -428,4 +425,14 @@ function getUsernameById(anId){
 		}
 	});
 	return tmpUsername;
+};
+
+function tempAlert(msg, duration) {
+	var el = document.createElement("div");
+	el.setAttribute("style", "position:absolute;bottom:10%;background-color:red;font-size:20px");
+	el.innerHTML = msg;
+	setTimeout(function() {
+		el.parentNode.removeChild(el);
+	}, duration);
+	document.body.appendChild(el);
 };
