@@ -41,9 +41,9 @@ function crearJugador(){
 		},
 		async: false,
 		success : function(responseText) {
-			response = responseText;
-			if(response == "OK"){
-				//TODO recuperar el ID en vez del OK hacerlo bien
+			var retrievedId = parseInt(responseText);
+			if(retrievedId > 0){
+				nuevoJugador.setId(retrievedId);
 				usersList.push(nuevoJugador);
 				refrescarTablaJugadores();
 			}			

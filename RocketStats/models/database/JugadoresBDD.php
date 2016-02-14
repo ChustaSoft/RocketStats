@@ -56,7 +56,7 @@ class JugadoresBDD{
 		$con = new BDDConexion();
 		$con->executeQuery($this->INSERT_USER, $vector);
 		
-		return "OK";
+		return $con->getLastIdTable("jugadores");
 	}
 }
 

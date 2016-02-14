@@ -65,6 +65,19 @@ class BDDConexion{
 		return $cuenta;		
 	}
 	
+	public function getLastIdTable($table){
+		$tmpSql = "SELECT max(id) AS LASTID FROM " . $table;
+		$tmpEmptyArray = array();
+		
+		$resultado = $this->launchQuery($tmpSql, $tmpEmptyArray);
+		
+		$retrivedId =  -1;
+		foreach($resultado as $row)
+			$retrivedId = $row['LASTID'];
+		
+		return $retrivedId;
+	}
+	
 }
 
 ?>
