@@ -46,7 +46,7 @@ class CargadorVistas{
 			
 			$this->controlador = new ControladorJugadores();
 			$user = $this->controlador->validarJugador($userName, $userPassword);
-				
+
 			if($user->getId() > 0){
 				$user->setContra("");
 				$menu = $this->load_template("views/templates/menu_bar.html");
