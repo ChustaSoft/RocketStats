@@ -37,9 +37,13 @@ class CargadorVistas{
 	 * Valida si el usuario introducido existe y es correcto
 	 */
 	public function validateUser(){
-		$contenido;
-		$menu;
-		
+		if( isset($_SESSION["sessionUserName"]) ){
+			$menu = $this->load_template("views/templates/menu_bar.html");
+			$contenido = "Bienvenido";
+
+			return $this->main($contenido, $menu);
+		}
+
 		if(isset($_POST["loginSubmit"])){
 			$userName = $_POST["nombre"];
 			$userPassword = $_POST["password"];
@@ -60,8 +64,9 @@ class CargadorVistas{
 				return $this->validateForm();
 			}			
 		}
-		else
+		else{
 			return $this->validateForm();
+		}
 	}
 	
 	public function logout(){

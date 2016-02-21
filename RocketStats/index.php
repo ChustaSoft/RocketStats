@@ -6,6 +6,10 @@ $cargadorVistas = new CargadorVistas();
 
 $action = 1;
 
+if( isset($_SESSION["sessionUserName"]) ){
+	$action = 2;
+}
+
 if( isset($_GET["action"]) ){
 	$action = $_GET["action"];
 }
